@@ -10,6 +10,7 @@ class ItemsController < ApplicationController
       :name
       :description
       :price
+      :catagory
     )
   end
 end
