@@ -1,7 +1,8 @@
 class ItemsController < ApplicationController
 
-  def new
-
+  def create
+    item = Item.create(item_params)
+    
   end
 
   private
