@@ -3,9 +3,7 @@ class CreateSales < ActiveRecord::Migration[5.2]
     create_table :sales do |t|
       t.integer :price
       t.belongs_to :user, foreign_key: true
-      t.belongs_to :item, foreign_key: true
-      
-      
+      t.belongs_to :deal, foreign_key: true
 
       t.timestamps
     end
