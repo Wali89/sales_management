@@ -7,4 +7,6 @@ class Item < ApplicationRecord
   def self.catagories
     @@catagories
   end
+
+
 end

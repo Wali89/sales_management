@@ -9,6 +9,10 @@ class ItemsController < ApplicationController
     redirect_to item_path(item)
   end
 
+  def index
+    @items = Item.all
+  end
+
   def show
     @item = Item.find_by(id: params[:id])
 

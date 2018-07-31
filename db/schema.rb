@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 2018_07_30_202422) do
     t.string "name"
     t.text "description"
     t.string "catagory"
-    t.integer "price"
+    t.decimal "price", precision: 8, scale: 2
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
