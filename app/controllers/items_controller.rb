@@ -24,7 +24,7 @@ class ItemsController < ApplicationController
       :name,
       :description,
       :price,
-      :catagory
+      :catagory,
     )
   end
 end
