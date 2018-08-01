@@ -1,6 +1,6 @@
 class Item < ApplicationRecord
   has_many :deals
-  has_many :users, :through => :deals
+
 
   @@catagories = ['Appliances', 'Electronics', 'Apparel']
 
