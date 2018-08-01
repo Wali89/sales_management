@@ -1,6 +1,6 @@
 class User < ApplicationRecord
-  has_many :sales
-  has_many :items, :through => :sales
+  has_many :deals
+  has_many :items, :through => :deals
 
   has_secure_password
 

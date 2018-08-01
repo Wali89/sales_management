@@ -19,11 +19,11 @@ ActiveRecord::Schema.define(version: 2018_07_30_202422) do
     t.datetime "end"
     t.string "message"
     t.integer "item_id"
-    t.integer "store_id"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["item_id"], name: "index_deals_on_item_id"
-    t.index ["store_id"], name: "index_deals_on_store_id"
+    t.index ["user_id"], name: "index_deals_on_user_id"
   end
 
   create_table "items", force: :cascade do |t|
@@ -31,24 +31,6 @@ ActiveRecord::Schema.define(version: 2018_07_30_202422) do
     t.text "description"
     t.string "catagory"
     t.decimal "price", precision: 8, scale: 2
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "sales", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "deal_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["deal_id"], name: "index_sales_on_deal_id"
-    t.index ["user_id"], name: "index_sales_on_user_id"
-  end
-
-  create_table "stores", force: :cascade do |t|
-    t.string "name"
-    t.string "address"
-    t.string "website"
-    t.string "phone"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
