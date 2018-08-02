@@ -11,10 +11,11 @@ DATA = {
   ["name", "description", "category", "price"],
 
   :items => [
-    ["PS4", "Sony Play Station 4", "", 199.99],
-    ["X-Box", "Microsoft X Box", "", 199.99],
-    ["Sony 55 Inch TV", "Sony Plasma TV", "", 600.50],
-    ["Frigidaire Fridge", "Keep your food cool", "", 700.50]
+    ["PS4", "Sony Play Station 4", "Electronics", 199.99],
+    ["X-Box", "Microsoft X Box", "Electronics", 199.99],
+    ["Sony 55 Inch TV", "Sony Plasma TV", "Appliances", 600.50],
+    ["Frigidaire Fridge", "Keep your food cool", "Appliances", 700.50],
+    ["Roshi", "Nike Sneakers", "Apparel", 100.00]
   ],
   :admins => [
     "Wali"
