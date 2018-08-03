@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get '/users/:id', to: 'users#show', as: 'user'
 
   get '/signin', to: 'sessions#new', as: 'signin'
-  post '/sessions', to: 'sessions#create', as: 'session'
+  post '/sessions', to: 'sessions#create', as: 'sessions'
   delete '/sessions/', to: 'sessions#destroy'
 
   get '/items', to: 'items#index', as: 'items'
@@ -22,5 +22,5 @@ Rails.application.routes.draw do
 
   root 'static_pages#home'
 
-  get '/auth/facebook/callback' => 'sessions#create'
+  get '/auth/facebook/callback', to: 'sessions#create'
 end
