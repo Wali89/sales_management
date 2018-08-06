@@ -1,10 +1,10 @@
 DATA = {
   :user_keys =>
-  ["name", "password"],
+  ["email", "name", "password"],
   :users => [
-  ["rick", "password"],
-  ["larry", "password"],
-  ["john", "password"]
+  ["rick@gmail.com", "rick", "password"],
+  ["larry@gmail.com", "larry", "password"],
+  ["john@gmail.com", "john", "password"]
   ],
 
   :item_keys =>

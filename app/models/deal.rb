@@ -4,5 +4,7 @@ class Deal < ApplicationRecord
   has_many :users, :through => :sales
 
 
-
+  def self.savings
+    
+  end
 end
