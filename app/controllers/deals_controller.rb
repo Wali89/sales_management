@@ -5,8 +5,12 @@ class DealsController < ApplicationController
   end
 
   def create
-    deal = Deal.create(deal_params)
-    redirect_to deal_path(deal)
+    @deal = Deal.new(deal_params)
+    if @deal.save
+      redirect_to item_deal_path(@deal)
+    else
+      render :new
+    end
   end
 
   def edit
@@ -14,16 +18,33 @@ class DealsController < ApplicationController
   end
 
   def index
+    if params[:item_id]
+      @item = Item.find_by(id: params[:item_id])
+      if @item.nil?
+        redirect_to items_path, alert: "Item not found"
+      else
+        @deals = @item.deals
+      end
+    end
+
     @deals = Deal.all
   end
 
   def show
-    @deal = Deal.find_by(id: params[:id])
+    if params[:item_id]
+      @item = Item.find_by(id: params[:item_id])
+      @deal = @item.deals.find_by(id: params[:id])
+      if @item.nil?
+        redirect_to item_deals_path(@item), alert: "Deal not found"
+      end
+    else
+      @deal = Deal.find(params[:id])
+    end
   end
 
   private
   def deal_params
-    params.require(:deal).permit(
+    params.permit(
       :price,
       :amount,
       :message,
