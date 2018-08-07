@@ -1,14 +1,13 @@
-<%= form_for(@deal) do |f| %>
+<%= form_for @deal do |f| %>
 
   <div class="form-group">
-    <%= f.label :item %><br>
 
-    <%= f.collection_select :item_id, Item.all, :id,:name, prompt: "Select Item" %>
-  </div> 
+    <% f.hidden_field @item.id, :value => @deal[:item_id] %>
 
+  </div>
   <div class="form-group">
     <%= f.label :amount %><br>
-    <%= f.number_field :amount, class: "form-control" %>
+    <%= f.number_field :amount, class: "form control" %>
   </div>
 
   <div class="form-group">

@@ -1,6 +1,6 @@
 <h1> <strong><%= @deal.message %></strong> </h1> <br>
 
 <p><strong> Item: </strong><%= @deal.item.name %> </p> <br>
-<p><strong> Reatail Price: </strong><%= number_to_currency(@deal.item.price) %> </p> <br>
+<p><strong> Retail Price: </strong><%= number_to_currency(@deal.item.price) %> </p> <br>
 <p><strong> Deal Price: </strong><%= number_to_currency(@deal.price) %> </p> <br>
 <p><strong> Savings: </strong><%= savings(@deal) %> </p>

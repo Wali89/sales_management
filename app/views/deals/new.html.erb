@@ -1,19 +1,9 @@
 <% if current_user.admin %>
 
-  <h1>New Deal</h1>
+  <h1>New Deal for <%= @item.name %></h1>
 
   <%= render 'form' %>
-  <% if @deal.errors.any? %>
-  <div id="error_explanation">
-    <h2><%= pluralize(@deal.errors.count, "error") %> prohibited this user from being saved:</h2>
 
-    <ul>
-      <% @deal.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
 <% else %>
 
   <h1> <strong> Only admins are allowed to create new deals. <strong> <h2>

@@ -1,16 +1,14 @@
 class DealsController < ApplicationController
 
   def new
-    @deal = Deal.new
+    @item = Item.find_by(id: params[:item_id])
+    @deal = @item.deals.build
   end
 
   def create
-    @deal = Deal.new(deal_params)
-    if @deal.save
-      redirect_to item_deal_path(@deal)
-    else
-      render :new
-    end
+    
+    @deal = Deal.create(amount: params[:deal][:amount], item_id: params[:deal][:item_id], price: params[:deal][:price], message: params[:deal][:message])
+    redirect_to item_deal_path(params[:deal][:item_id], @deal)
   end
 
   def edit
@@ -48,7 +46,8 @@ class DealsController < ApplicationController
       :price,
       :amount,
       :message,
-      :item_id
+      :item_id,
+      item_attributes: [:id]
     )
   end 
 

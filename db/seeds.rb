@@ -23,7 +23,7 @@ DATA = {
 }
 
 def main
-  make_users
+  make_users`q`
   make_admin
   make_items
 end
