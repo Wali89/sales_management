@@ -6,7 +6,6 @@ class ItemsController < ApplicationController
   end
 
   def create
-
     @item = Item.create(item_params)
     if @item.valid?
       @item.save
@@ -31,7 +30,7 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find_by(params[:id])
+    @item = Item.find(params[:id])
   end
   
   def update
