@@ -1,53 +1,46 @@
 class DealsController < ApplicationController
 
   def new
-    @item = Item.find_by(id: params[:item_id])
-    @deal = @item.deals.build
+    @item = Item.find(params[:item_id])
+    @deal = Deal.new(item_id: params[:item_id])
   end
 
   def create
-    
-    @deal = Deal.create(amount: params[:deal][:amount], item_id: params[:deal][:item_id], price: params[:deal][:price], message: params[:deal][:message])
-    redirect_to item_deal_path(params[:deal][:item_id], @deal)
+    @item = Item.find(deal_params[:item_id])
+    @deal = Deal.new(item_id: params[:item_id])
+    if @deal.valid?
+      @deal.save
+      redirect_to item_deal_path(@deal.item_id, @deal)
+    else
+      render :new
+    end
   end
 
   def edit
-    @deal = Deal.find_by(id: params[:id])
+    @deal = Deal.find(params[:id])
   end
 
   def index
     if params[:item_id]
-      @item = Item.find_by(id: params[:item_id])
-      if @item.nil?
-        redirect_to items_path, alert: "Item not found"
-      else
-        @deals = @item.deals
-      end
+      @deals = Item.find(params[:item_id]).deals
+    else
+      @deals = Deal.all
     end
-
-    @deals = Deal.all
   end
 
   def show
-    if params[:item_id]
-      @item = Item.find_by(id: params[:item_id])
-      @deal = @item.deals.find_by(id: params[:id])
-      if @item.nil?
-        redirect_to item_deals_path(@item), alert: "Deal not found"
-      end
-    else
-      @deal = Deal.find(params[:id])
-    end
+    @item = Item.find(params[:item_id])
+    @deal = Deal.find(params[:id])
   end
 
   private
   def deal_params
-    params.permit(
+    params.require(:deal).permit(
       :price,
       :amount,
       :message,
       :item_id,
-      item_attributes: [:id]
+      :user_id
     )
   end 
 

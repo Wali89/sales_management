@@ -6,11 +6,13 @@ Rails.application.routes.draw do
 
   get '/signin', to: 'sessions#new', as: 'signin'
   
-  resources :items do
-    resources :deals, only: [:index, :show, :new, :create]
+  resources :items, only: [:show, :index] do
+    resources :deals, only: [:show, :index, :new]
   end
 
-  resources :deals
+
+  resources :items, only: [:new, :create, :edit, :update]
+  resources :deals, only: [:index, :show, :new, :create, :edit, :update]
 
   resource :sessions, only: [:new, :create, :destroy]
 

@@ -6,8 +6,14 @@ class ItemsController < ApplicationController
   end
 
   def create
-    item = Item.create(item_params)
-    redirect_to item_path(item)
+
+    @item = Item.create(item_params)
+    if @item.valid?
+      @item.save
+      redirect_to item_path(@item)
+    else
+      render :new
+    end
   end
 
   def edit
@@ -18,23 +24,19 @@ class ItemsController < ApplicationController
     @items = Item.all
   end
 
-  def show
-    @item = Item.find_by(id: params[:id])
-    @deal = Deal.new
-    if params[:deal]
-      @deal = Deal.create(
-        amount: params[:deal][:amount],
-        price: params[:deal][:price],
-        message: params[:message],
-        item_id: @item.id
-      )
+  def posts_index
+    @item = Item.find(params[:id])
+    @deals = @item.deals
+    render template:'deals/index'
+  end
 
-    end
+  def show
+    @item = Item.find_by(params[:id])
   end
   
   def update
     item = Item.find_by(id: params[:id])
-    item.update(item_params)
+    item.update(params)
     redirect_to item_path(item)
   end
 
@@ -46,7 +48,7 @@ class ItemsController < ApplicationController
 
   private
   def item_params
-    params.permit(
+    params.require(:item).permit(
       :name,
       :description,
       :price,

@@ -1,10 +1,10 @@
 class Deal < ApplicationRecord
   belongs_to :item
-  has_many :sales
-  has_many :users, :through => :sales
+  belongs_to :user
 
+  validates :price, presence: true
+  validates :message, presence: true
+  validates :item_id, presence: true
+  validates :user_id, presence: true
 
-  def self.savings
-    
-  end
 end

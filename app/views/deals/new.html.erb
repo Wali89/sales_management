@@ -1,11 +1,3 @@
-<% if current_user.admin %>
+<h1>New Deal for <%= @item.name %></h1>
 
-  <h1>New Deal for <%= @item.name %></h1>
-
-  <%= render 'form' %>
-
-<% else %>
-
-  <h1> <strong> Only admins are allowed to create new deals. <strong> <h2>
-
-<% end %>
+<%= render 'form' %>

@@ -2,9 +2,9 @@ DATA = {
   :user_keys =>
   ["email", "name", "password"],
   :users => [
-  ["rick@gmail.com", "rick", "password"],
-  ["larry@gmail.com", "larry", "password"],
-  ["john@gmail.com", "john", "password"]
+  ["Rick@gmail.com", "Rick", "pw"],
+  ["Larry@gmail.com", "Larry", "pw"],
+  ["John@gmail.com", "John", "pw"]
   ],
 
   :item_keys =>
@@ -23,7 +23,7 @@ DATA = {
 }
 
 def main
-  make_users`q`
+  make_users
   make_admin
   make_items
 end
@@ -40,7 +40,7 @@ end
 
 def make_admin
   DATA[:admins].each do |name|
-    User.create(name: name, admin: true, password: 'test')
+    User.create(name: name, admin: true, password: 'test', email: 'Wali@gmail.com')
   end
 end
 

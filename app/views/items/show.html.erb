@@ -4,33 +4,10 @@
 <p><strong>Category:</strong> <%= @item.category %></p>
 
 <p><strong> <%= link_to "Deals", item_deals_path(@item) %> </strong></p>
-<% if current_user.admin %>
+
+<p><strong> <%= link_to "Create New Deal", new_item_deal_path(@item) %> </strong></p>
 
 
-<h2>Create New Deal</h2>
-<%= form_for @item.deals.build do |f| %>
-    <div class="form-group">
-    <%= f.hidden_field :item_id, value: @item.id %>
 
-    </div>
-    <div class="form-group">
-      <%= f.label :amount %><br>
-      <%= f.number_field :amount, class: "form control" %>
-    </div>
 
-    <div class="form-group">
-      <%= f.label :price %><br>
-      <%= f.number_field :price, class: "form control", step: :any %>
-    </div> 
 
-    <div class="form-group">
-      <%= f.label :message %><br>
-      <%= f.text_area :message, class: "form control" %>
-    </div> 
-
-    <div class="actions">
-      <%= f.submit class: "btn btn-primary" %>
-    </div>
-
-<% end %>
-<% end %>
