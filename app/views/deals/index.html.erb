@@ -1,11 +1,46 @@
+<table class="table">
+  <thead>
+    <tr>
+        <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+<% if !params[:user].blank? %>
+  <% @deals = Deal.where(user: params[:user]) %>
+<% end %>
+
+<h1> Deals! <h1>
+  <div>
+    <h3>Filter Deals:</h3>
+    <%= form_tag("/deals", method: "get") do %>
+      <%= select_tag "user", options_from_collection_for_select(User.all, "id",   "email"), include_blank: true %>
+      <%= submit_tag "Filter" %>
+    <% end %>
+  </div>
+
 <% if params[:item_id] %>
   <h1><strong><%= @item.name %></h1></strong>
-  <p><strong>Retail Price:<%= number_to_currency(@item.price) %></p></strong>
+    <p><strong>Retail Price:<%= number_to_currency(@item.price) %></p></strong>
   <% @deals.each do |deal| %>
-    <li><%= number_to_currency(deal.price) %> - <%= link_to deal.message,   item_deal_path(@item, deal) %></li>
+    <tr>
+    <td><%= number_to_currency(deal.price) %></td>
+    <td><%= link_to deal.message, item_deal_path(@item, deal) %></td>
+    </tr>
+    <% end %>
+
+<% else %>
+
+  <tbody>
+
+  <% @deals.each do |deal| %>
+  <tr>
+    <td> <%= deal.item.name %></td>
+    <td> <%= number_to_currency(deal.price) %></td>
+    <td> <%= link_to deal.message, item_deal_path(deal.item, deal) %></td>
+    <td> <%= deal.user.email %> </td>
+  </tr>
   <% end %>
-  <% else %>
-    <% @deals.each do |deal| %>
-    <li><%= number_to_currency(deal.price) %> - <%= link_to deal.message,   item_deal_path(deal.item, deal) %></li>
-  <% end %>
+
 <% end %>
+  </tbody>  
+</table>

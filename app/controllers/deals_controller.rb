@@ -1,5 +1,6 @@
 class DealsController < ApplicationController
-
+  helper_method :params
+  
   def new
     @item = Item.find(params[:item_id])
     @deal = Deal.new(item_id: params[:item_id])
