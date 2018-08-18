@@ -1,6 +1,7 @@
 class DealsController < ApplicationController
   helper_method :params
   
+  
   def new
     @item = Item.find(params[:item_id])
     @deal = Deal.new(item_id: params[:item_id])
@@ -37,6 +38,10 @@ class DealsController < ApplicationController
     @deal = Deal.find(params[:id])
   end
 
+  def under_fifty
+    @deals = Deal.fifty
+    render "index"
+  end
   private
   def deal_params
     params.require(:deal).permit(
