@@ -12,15 +12,8 @@
 <% end %>
 
 <h1> Deals! <h1>
-  <div>
-    <h3>Filter Deals:</h3>
-    <%= form_tag("/deals", method: "get") do %>
-      <%= select_tag "user", options_from_collection_for_select(User.all, "id",   "email"), include_blank: true %>
-      <%= submit_tag "Filter" %>
-    <% end %>
-  </div>
 
-  <%= link_to "Deals Under $50.00", deals_under_fifty_path  %>
+<%= link_to "Deals Under $50.00", deals_under_fifty_path  %>
 
 <% if params[:item_id] %>
   <h1><strong><%= @item.name %></h1></strong>
