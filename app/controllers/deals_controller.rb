@@ -34,8 +34,12 @@ class DealsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:item_id])
-    @deal = Deal.find(params[:id])
+    if params[:item_id]
+      @item = Item.find(params[:item_id])
+      @deal = Deal.find(params[:id])
+    else
+      @deal = Deal.find(params[:id])
+    end
   end
 
   def under_fifty

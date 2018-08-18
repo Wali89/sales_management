@@ -4,8 +4,9 @@
         <th colspan="3"></th> 
     </tr>
   </thead>
-  <tbody>
 
+  <tbody>
+  
 <% if !params[:user].blank? %>
   <% @deals = Deal.where(user: params[:user]) %>
 <% end %>
@@ -32,10 +33,16 @@
   <% end %>
 
 <% else %>
-
+    <tr>
+      <th> Item </th>
+      <th> Price </th>
+      <th> Deal </th>
+      <th> User </th>
+    </tr>
   <tbody>
 
   <% @deals.each do |deal| %>
+
   <tr>
     <td> <%= deal.item.name %></td>
     <td> <%= number_to_currency(deal.price) %></td>
