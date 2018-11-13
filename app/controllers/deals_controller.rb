@@ -1,6 +1,6 @@
 class DealsController < ApplicationController
   helper_method :params
-  
+  require 'pry'
   
   def new
     @item = Item.find(params[:item_id])
@@ -37,9 +37,17 @@ class DealsController < ApplicationController
     if params[:item_id]
       @item = Item.find(params[:item_id])
       @deal = Deal.find(params[:id])
+
     else
       @deal = Deal.find(params[:id])
+      @item = Item.find(@deal.item_id)
     end
+  end
+
+  def deal_data
+    deal = Deal.find(params[:id])
+    render json: deal.to_json(only [:name, :message, :price],
+                                    include: [item: { only: [:name]}])
   end
 
   def under_fifty
@@ -50,7 +58,7 @@ class DealsController < ApplicationController
   def deal_params
     params.require(:deal).permit(
       :price,
-      :amount,
+      :name,
       :message,
       :item_id,
       :user_id

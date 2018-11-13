@@ -26,24 +26,20 @@
   <% end %>
 
 <% else %>
-    <tr>
-      <th> Item </th>
-      <th> Price </th>
-      <th> Deal </th>
-      <th> User </th>
-    </tr>
-  <tbody>
-
-  <% @deals.each do |deal| %>
-
-  <tr>
-    <td> <%= deal.item.name %></td>
-    <td> <%= number_to_currency(deal.price) %></td>
-    <td> <%= link_to deal.message, item_deal_path(deal.item, deal) %></td>
-    <td> <%= deal.user.email %> </td>
-  </tr>
-  <% end %>
+   <% @deals.each do |deal| %>
+    <%= render partial: "deal", locals: {deal: deal} %>
+   <% end %> 
 
 <% end %>
-  </tbody>  
-</table>
+
+<script type="text/javascript" charset="utf-8">
+$(function () {
+  $(".js-more").on('click', function() {
+    var id = $(this).data("id");
+    $.get("/deals/" + id + "/deal_data", function(data) {
+
+      $("#body-" + id).html(data["description"]);
+    });
+  });
+});
+</script>
