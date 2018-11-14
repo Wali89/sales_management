@@ -24,6 +24,11 @@ class DealsController < ApplicationController
     @deal = Deal.find(params[:id])
   end
 
+  def message
+    deal = Deal.find(params[:id])
+    render plain: deal.message
+  end
+  
   def index
     if params[:item_id]
       @item = Item.find(params[:item_id])
