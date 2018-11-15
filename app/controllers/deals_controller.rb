@@ -46,13 +46,11 @@ class DealsController < ApplicationController
     else
       @deal = Deal.find(params[:id])
       @item = Item.find(@deal.item_id)
+      respond_to do |format|
+        format.html { render :show }
+        format.json { render json: @deal.to_json(only: [:id, :name, :message, :price, :inventory])}
+      end
     end
-  end
-
-  def deal_data
-    deal = Deal.find(params[:id])
-    render json: deal.to_json(only [:name, :message, :price],
-                                    include: [item: { only: [:name]}])
   end
 
   def under_fifty

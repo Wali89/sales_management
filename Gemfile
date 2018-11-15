@@ -37,7 +37,7 @@ gem 'jquery-rails'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bootstrap-sass', '3.3.7'
-
+gem 'phantomjs'
 gem 'omniauth'
 
 gem 'omniauth-facebook'
