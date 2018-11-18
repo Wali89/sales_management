@@ -42,13 +42,16 @@ class DealsController < ApplicationController
     if params[:item_id]
       @item = Item.find(params[:item_id])
       @deal = Deal.find(params[:id])
-
+      respond_to do |format|
+        format.html { render :show }
+        format.json { render json: @deal }
+      end
     else
       @deal = Deal.find(params[:id])
       @item = Item.find(@deal.item_id)
       respond_to do |format|
         format.html { render :show }
-        format.json { render json: @deal.to_json(only: [:id, :name, :message, :price, :inventory])}
+        format.json { render json: @deal }
       end
     end
   end
