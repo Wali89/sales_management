@@ -33,6 +33,21 @@ $(function(){
     e.preventDefault();
   })
 
+  $("new_deal).on("sumbut", function(e){
+    $.ajax({
+      type: "POST",
+      url: this.action,
+      data: $(this).serialize(),
+      success: function(response){
+        $("#deal_content").val('')
+
+        let deal = new Deal(response)
+        deal.renderLi()
+      }
+    })
+    e.preventDefault()
+  })
+
   function showItem(json){
     $(".itemName").text(json.name)
     $(".itemDescription").text(json.description)
@@ -50,7 +65,7 @@ $(function(){
   this.price = attribute.price  
 }
 
-Deal.prototype.renderLI = function(){
+Deal.prototype.renderLi = function(){
   let html = '<li>' + this.user.name + 'has a deal for:' + this.price + '</li>'
   $("#deals_div ol").append(html)
 } 
