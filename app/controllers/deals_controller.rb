@@ -9,13 +9,11 @@ class DealsController < ApplicationController
   end
 
   def create
-
     @item = Item.find(deal_params[:item_id])
     @deal = Deal.new(deal_params)
-    @deal.item_id = @item.id
     if @deal.valid?
       @deal.save
-      redirect_to item_deal_path(@deal.item_id, @deal)
+      render :json => @deal
     else
       render :new
     end
