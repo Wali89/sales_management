@@ -1,6 +1,6 @@
 class DealsController < ApplicationController
   helper_method :params
-  before_action :set_item
+  before_action :set_item, only: [:show, :edit, :update, :destroy]
   require 'pry'
   
   def new
