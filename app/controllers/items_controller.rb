@@ -1,4 +1,6 @@
 class ItemsController < ApplicationController
+  before_action :set_item, only: [:show, :edit, :update, :destroy, :deals_index]
+
 
   def new
     @item = Item.new
@@ -8,23 +10,17 @@ class ItemsController < ApplicationController
     @item = Item.create(item_params)
     render json: @item, status: 201
   end
-
+  
   def edit
-    @item = Item.find_by(id: params[:id])
+
   end
 
   def index 
     @items = Item.all
   end
 
-  def deals_index
-    @item = Item.find(params[:id])
-    @deals = @item.deals
-    render template:'deals/index'
-  end
 
   def show
-    @item = Item.find(params[:id])
     @deals = @item.deals
     respond_to do |format|
       format.html { render :show }
@@ -39,12 +35,16 @@ class ItemsController < ApplicationController
   end
 
   def deals_index
-    @item = Item.find(params[:id])
     @deals = @item.deals
     render template: 'deal/show'
   end
 
   private
+  
+  def set_item
+    @item = Item.find(params[:id])
+  end
+
   def item_params
     params.require(:item).permit(
       :name,

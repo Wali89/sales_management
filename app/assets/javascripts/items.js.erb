@@ -1,22 +1,3 @@
-
-<h1 class="itemName"><strong> <%= @item.name %></strong></h1>
-<p class="itemDescription"><strong>Description:</strong> <%= @item.description %></p>
-<p class="itemPrice"><strong>Price:</strong> <%= number_to_currency(@item.price) %></p>
-<p class="itemCategory"><strong>Category:</strong> <%= @item.category %></p>
-
-
-
-<p><strong> <%= link_to "Create New Deal", new_item_deal_path(@item) %> </strong></p>
-
-<%= link_to "Load Deals", item_deals_path(@item), class: "load_deals" %>
-
-<div id="deals_div">
-  <ol>
-  </ol>
-</div>
-
-<script type="text/javascript" charset="utf-8">
-
 $(function(){
 
   $("a.load_deals").on("click", function(e){
@@ -40,7 +21,11 @@ $(function(){
   
   }
 
-  function Deal(attributes){
+
+
+})
+
+function Deal(attributes){
   this.id = attributes.id
   this.name = attributes.name
   this.user = attributes.user
@@ -51,6 +36,3 @@ Deal.prototype.renderLI = function(){
   let html = '<li>' + this.user.name + 'has a deal for:' + this.price + '</li>'
   $("#deals_div ol").append(html)
 } 
-
-
-</script>
