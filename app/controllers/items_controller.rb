@@ -10,7 +10,7 @@ class ItemsController < ApplicationController
     @item = Item.create(item_params)
     render json: @item, status: 201
   end
-  
+
   def edit
 
   end
@@ -21,6 +21,7 @@ class ItemsController < ApplicationController
 
 
   def show
+    @deal = Deal.create 
     @deals = @item.deals
     respond_to do |format|
       format.html { render :show }
