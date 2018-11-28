@@ -1,6 +1,6 @@
 class DealsController < ApplicationController
   helper_method :params
-  before_action :set_item, only: [:edit, :update, :destroy, :index]
+  before_action :set_item, only: [:edit, :update, :destroy]
   require 'pry'
   
   def new
@@ -29,16 +29,21 @@ class DealsController < ApplicationController
   end
   
   def index
-    @deals = @item.deals
-    respond_to do |format|
-      format.json { render :json => @deals }
-      format.html { render :index }
+    if params[:item_id]
+      set_item
+      @deals = @item.deals
+      respond_to do |format|
+        format.json { render :json => @deals }
+        format.html { render :index }
+      end
+    else
+      @deals = Deal.all
     end
   end
 
   def show
     if params[:item_id]
-      @item = Item.find(params[:item_id])
+      set_item
       @deal = Deal.find(params[:id])
       respond_to do |format|
         format.html { render :show }

@@ -53,7 +53,7 @@ $(function () {
   };
 
   Deal.prototype.renderLi = function(){
-  let html = '<li> You just posted a deal for:' + this.price + '</li>'
+  let html = '<li> You just posted a deal for ' + formatter.format(this.price) + '</li>'
   $("#deals_div ol").append(html)
   }; 
 
