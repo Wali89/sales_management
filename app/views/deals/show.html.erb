@@ -16,7 +16,6 @@ $(function () {
     event.preventDefault();
     var nextId = parseInt($(".js-next").attr("data-id")) + 1;
     $.get("/deals/" + nextId + ".json", function(data) {
-      debugger
       var deal = data;
       $(".dealName").text(deal["name"]);
       $(".dealPrice").text(deal["price"]);
