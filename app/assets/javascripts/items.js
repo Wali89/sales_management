@@ -35,14 +35,13 @@ $(document).on("turbolinks:load", function () {
 
   $('.js-next').on("click", function(e){
     e.preventDefault();
-    var nextId = parseInt($(".js-next").attr("data-id")) + 1;
-    
+    var nextId = parseInt($(".js-next").attr("data-id")) + 1;  
     $.get("/items/" + nextId + ".json", function(json){
-      
+      $(".js-next").attr("data-id", json["id"]);
       var data = json
-      debugger
-     showItem(data)
+      showItem(data)
     })
+    
     
   })
 
