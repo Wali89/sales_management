@@ -1,11 +1,10 @@
-$(document).ready(function() {
-
+$(document).on("turbolinks:load", function () {
   $("a.load_deals").on("click", function(e) {
-    $.get(this.href).success(function(json){
+    $.get(this.href, null, null, 'json').done(function(json){
       let $deals = $("#deals_div ol")
       $deals.text('')
       json.forEach(function(deal){
-        $deals.append("<li> <a href=/deals/" + deal.id + ">" + deal.user.name + "</a>" + " has a deal for " + formatter.format(deal.price) + " email: " + deal.user.email + " for more info." + "</li>")
+        $deals.append("<li> <a href=/deals/" + deal.id + ">" + deal.user.email + "</a>" + " has a deal for " + formatter.format(deal.price) + " email: " + deal.user.email + " for more info." + "</li>")
       });
     });
     e.preventDefault();

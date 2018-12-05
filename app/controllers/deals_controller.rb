@@ -33,8 +33,15 @@ class DealsController < ApplicationController
       set_item
       @deals = @item.deals
       respond_to do |format|
-        format.json { render :json => @deals }
         format.html { render :index }
+        format.json { render :json => @deals }
+      end
+    elsif params[:user_id]
+      @user = User.find(params[:user_id])
+      @deals = @user.deals
+      respond_to do |format|
+        format.html { render :index }
+        format.json { render :json => @deals }
       end
     else
       @deals = Deal.all

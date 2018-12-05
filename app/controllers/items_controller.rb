@@ -17,6 +17,11 @@ class ItemsController < ApplicationController
 
   def index 
     @items = Item.all
+    respond_to do |format|
+      format.html { render :index }
+      format.json { render :json => @items }
+
+    end
   end
 
 
@@ -25,7 +30,8 @@ class ItemsController < ApplicationController
     @deals = @item.deals
     respond_to do |format|
       format.html { render :show }
-      format.json { render json: @item }
+      format.json { render :json => @item }
+
     end
   end
   
